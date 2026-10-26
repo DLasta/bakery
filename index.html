@@ -1,0 +1,2624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Crust Bakery | Fresh Bread, Pastries & Cakes in Zagreb</title>
+    <meta name="description" content="Golden Crust Bakery offers freshly baked artisan bread, pastries, croissants and handcrafted cakes in Zagreb. Made fresh every single morning with traditional recipes.">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Golden Crust Bakery | Fresh Bread, Pastries & Cakes">
+    <meta property="og:description" content="Artisan breads, buttery pastries and handcrafted cakes made fresh in Zagreb every day.">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. CSS VARIABLES & RESET
+           ========================================================================== */
+        :root {
+            --color-cream: #FAF7F2;
+            --color-cream-light: #FFFFFF;
+            --color-beige: #EFEBE4;
+            --color-beige-dark: #E2DBD0;
+            --color-dark-roast: #2B1E1A;
+            --color-dark-roast-light: #42302A;
+            --color-caramel: #C87A38;
+            --color-caramel-hover: #B0672A;
+            --color-amber: #DA9D45;
+            --color-amber-soft: #F5E6D3;
+            --color-text-main: #2B1E1A;
+            --color-text-muted: #6B5E57;
+            --color-text-light: #A3968F;
+            --color-border: #E5DDD3;
+            --color-error: #D93838;
+            --color-success: #2E7D32;
+
+            --font-heading: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+            --transition-smooth: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            --transition-fast: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+            --shadow-sm: 0 4px 12px rgba(43, 30, 26, 0.04);
+            --shadow-md: 0 8px 24px rgba(43, 30, 26, 0.08);
+            --shadow-lg: 0 16px 40px rgba(43, 30, 26, 0.12);
+            --shadow-xl: 0 24px 60px rgba(43, 30, 26, 0.16);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            
+            --header-height: 88px;
+            --header-height-scrolled: 72px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-cream);
+            color: var(--color-text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Focus Ring Style */
+        :focus-visible {
+            outline: 2px solid var(--color-caramel);
+            outline-offset: 4px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-beige);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-caramel);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-caramel-hover);
+        }
+
+        /* ==========================================================================
+           2. REUSABLE UTILITIES & LAYOUT
+           ========================================================================== */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 64px 0;
+            }
+        }
+
+        .text-center { text-align: center; }
+
+        .section-header {
+            margin-bottom: 56px;
+            max-width: 680px;
+        }
+
+        .section-header.center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tagline {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-caramel);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.75rem;
+            font-weight: 600;
+            color: var(--color-dark-roast);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.125rem;
+            }
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-muted);
+            font-weight: 400;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+            transition: var(--transition-smooth);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--color-caramel);
+            color: var(--color-cream-light);
+            box-shadow: 0 4px 14px rgba(200, 122, 56, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-caramel-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(200, 122, 56, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-dark-roast);
+            border: 1.5px solid var(--color-dark-roast);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-dark-roast);
+            color: var(--color-cream-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-dark {
+            background-color: var(--color-dark-roast);
+            color: var(--color-cream-light);
+        }
+
+        .btn-dark:hover {
+            background-color: var(--color-dark-roast-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-cream-light);
+            color: var(--color-dark-roast);
+            border: 1px solid var(--color-border);
+            transition: var(--transition-smooth);
+        }
+
+        .btn-icon:hover {
+            background: var(--color-caramel);
+            color: var(--color-cream-light);
+            border-color: var(--color-caramel);
+            transform: scale(1.05);
+        }
+
+        /* SCROLL REVEAL ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.15s; }
+        .reveal-delay-2 { transition-delay: 0.3s; }
+        .reveal-delay-3 { transition-delay: 0.45s; }
+
+        /* Reduced Motion Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .hero-fade-up, .hero-fade-in, .hero-image-animate {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
+        /* ==========================================================================
+           3. HEADER & NAVIGATION
+           ========================================================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+        }
+
+        .header.scrolled {
+            height: var(--header-height-scrolled);
+            background-color: rgba(250, 247, 242, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-sm);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--color-dark-roast);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            color: var(--color-caramel);
+            width: 28px;
+            height: 28px;
+        }
+
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--color-dark-roast);
+            position: relative;
+            padding: 6px 0;
+            transition: var(--transition-fast);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--color-caramel);
+            transition: var(--transition-smooth);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        /* Hamburger Button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            background: transparent;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-dark-roast);
+            border-radius: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .hamburger.is-active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .hamburger.is-active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.is-active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Mobile Drawer */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 360px;
+            height: 100vh;
+            background-color: var(--color-cream);
+            z-index: 1050;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            flex-direction: column;
+            padding: 100px 32px 40px;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .mobile-nav.is-open {
+            transform: translateX(0);
+        }
+
+        .mobile-nav-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(43, 30, 26, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1040;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .mobile-nav-backdrop.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .mobile-nav-link {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--color-dark-roast);
+            font-weight: 600;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .nav-desktop { display: none; }
+            .hamburger { display: flex; }
+            .header-cta .btn { display: none; }
+        }
+
+        /* ==========================================================================
+           4. HERO SECTION
+           ========================================================================== */
+        .hero {
+            padding-top: calc(var(--header-height) + 40px);
+            padding-bottom: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(circle at 80% 20%, #F5EDE2 0%, var(--color-cream) 60%);
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background-color: var(--color-amber-soft);
+            color: var(--color-caramel);
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            line-height: 1.08;
+            font-weight: 600;
+            color: var(--color-dark-roast);
+            margin-bottom: 24px;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--color-text-muted);
+            margin-bottom: 36px;
+            max-width: 520px;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image-frame {
+            position: relative;
+            border-radius: 200px 200px 20px 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            aspect-ratio: 4/5;
+        }
+
+        .hero-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(0.95);
+            animation: heroImgScale 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: 30px;
+            left: -20px;
+            background: var(--color-cream-light);
+            padding: 18px 24px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border: 1px solid var(--color-border);
+            animation: floatBadge 4s ease-in-out infinite alternate;
+        }
+
+        .hero-badge-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--color-amber-soft);
+            color: var(--color-caramel);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .hero-badge-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--color-dark-roast);
+        }
+        .hero-badge-sub {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Hero Entry Animations */
+        .hero-fade-up {
+            opacity: 0;
+            transform: translateY(25px);
+            animation: heroFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .hero-delay-1 { animation-delay: 0.2s; }
+        .hero-delay-2 { animation-delay: 0.4s; }
+        .hero-delay-3 { animation-delay: 0.6s; }
+
+        @keyframes heroFadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heroImgScale {
+            to { transform: scale(1); }
+        }
+
+        @keyframes floatBadge {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .hero-title { font-size: 3rem; }
+            .hero-description { margin-left: auto; margin-right: auto; }
+            .hero-actions { justify-content: center; }
+            .hero-badge { left: 50%; transform: translateX(-50%); bottom: 20px; }
+            @keyframes floatBadge {
+                0% { transform: translate(-50%, 0); }
+                100% { transform: translate(-50%, -10px); }
+            }
+        }
+
+        /* ==========================================================================
+           5. TRUST STATS BAR
+           ========================================================================== */
+        .stats-section {
+            background-color: var(--color-dark-roast);
+            color: var(--color-cream-light);
+            padding: 50px 0;
+            position: relative;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 12px;
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-amber);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--color-beige);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+            .stat-number { font-size: 2.75rem; }
+        }
+
+        /* ==========================================================================
+           6. FEATURED PRODUCTS (FRESH FROM THE OVEN)
+           ========================================================================== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .product-card {
+            background: var(--color-cream-light);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .product-image-container {
+            position: relative;
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background-color: var(--color-beige);
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .product-card:hover .product-image-container img {
+            transform: scale(1.08);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background-color: var(--color-caramel);
+            color: var(--color-cream-light);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            z-index: 2;
+        }
+
+        .product-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .product-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-dark-roast);
+        }
+
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-caramel);
+        }
+
+        .product-description {
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .product-action-btn {
+            width: 100%;
+            background-color: var(--color-beige);
+            color: var(--color-dark-roast);
+            font-weight: 600;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition-fast);
+        }
+
+        .product-card:hover .product-action-btn {
+            background-color: var(--color-caramel);
+            color: var(--color-cream-light);
+        }
+
+        /* ==========================================================================
+           7. INTERACTIVE MENU & CATEGORY FILTER
+           ========================================================================== */
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            border-radius: var(--radius-full);
+            background-color: var(--color-cream-light);
+            color: var(--color-dark-roast);
+            border: 1px solid var(--color-border);
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--color-caramel);
+            color: var(--color-caramel);
+        }
+
+        .filter-btn.active {
+            background-color: var(--color-dark-roast);
+            color: var(--color-cream-light);
+            border-color: var(--color-dark-roast);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+            min-height: 400px;
+        }
+
+        /* Card Fade Transition */
+        .menu-card-anim {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .menu-card-anim.fade-out {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        /* ==========================================================================
+           8. TODAY'S SPECIAL
+           ========================================================================== */
+        .special-section {
+            background: linear-gradient(135deg, var(--color-dark-roast) 0%, #1A1210 100%);
+            color: var(--color-cream-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            margin: 40px auto;
+        }
+
+        .special-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+
+        .special-image {
+            height: 100%;
+            min-height: 380px;
+        }
+
+        .special-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .special-content {
+            padding: 64px;
+        }
+
+        .special-badge {
+            display: inline-block;
+            background-color: var(--color-amber);
+            color: var(--color-dark-roast);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: var(--radius-full);
+            margin-bottom: 20px;
+        }
+
+        .special-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .special-desc {
+            font-size: 1.1rem;
+            color: var(--color-beige);
+            margin-bottom: 28px;
+        }
+
+        .special-price-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .special-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-amber);
+        }
+
+        @media (max-width: 992px) {
+            .special-grid { grid-template-columns: 1fr; }
+            .special-content { padding: 40px 24px; }
+            .special-image { height: 280px; min-height: auto; }
+        }
+
+        /* ==========================================================================
+           9. ABOUT SECTION
+           ========================================================================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-image-stack {
+            position: relative;
+        }
+
+        .about-main-img {
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            background-color: var(--color-cream-light);
+            padding: 24px 18px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        .value-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--color-amber-soft);
+            color: var(--color-caramel);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 1.25rem;
+        }
+
+        .value-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--color-dark-roast);
+        }
+
+        .value-text {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        @media (max-width: 992px) {
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .values-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ==========================================================================
+           10. GALLERY & LIGHTBOX
+           ========================================================================== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            background-color: var(--color-beige);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(43, 30, 26, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: var(--color-cream-light);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 14, 12, 0.94);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox-modal.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .lightbox-caption {
+            color: var(--color-beige);
+            margin-top: 16px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            color: var(--color-cream-light);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .lightbox-btn {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--color-cream-light);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+            z-index: 2010;
+        }
+
+        .lightbox-btn:hover {
+            background: var(--color-caramel);
+        }
+
+        .lightbox-close { top: 24px; right: 24px; }
+        .lightbox-prev { left: 24px; top: 50%; transform: translateY(-50%); }
+        .lightbox-next { right: 24px; top: 50%; transform: translateY(-50%); }
+
+        @media (max-width: 768px) {
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+        }
+
+        /* ==========================================================================
+           11. TESTIMONIALS CAROUSEL
+           ========================================================================== */
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0 40px;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .quote-icon {
+            color: var(--color-amber);
+            font-size: 3rem;
+            line-height: 1;
+            margin-bottom: 20px;
+            font-family: var(--font-heading);
+        }
+
+        .testimonial-text {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--color-dark-roast);
+            line-height: 1.3;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-text { font-size: 1.4rem; }
+        }
+
+        .testimonial-author {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-caramel);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--color-beige-dark);
+            transition: var(--transition-fast);
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: var(--color-caramel);
+            width: 24px;
+            border-radius: 10px;
+        }
+
+        /* ==========================================================================
+           12. CONTACT SECTION
+           ========================================================================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .contact-card-box {
+            background-color: var(--color-cream-light);
+            border-radius: var(--radius-md);
+            padding: 40px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--color-amber-soft);
+            color: var(--color-caramel);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-dark-roast);
+            margin-bottom: 4px;
+        }
+
+        .contact-details p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            background-color: var(--color-beige);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--color-border);
+        }
+
+        .map-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ==========================================================================
+           13. MODALS (PRODUCT & ORDER)
+           ========================================================================== */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(43, 30, 26, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-backdrop.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background-color: var(--color-cream-light);
+            border-radius: var(--radius-md);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            transform: translateY(20px) scale(0.98);
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .modal-backdrop.is-open .modal-box {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--color-beige);
+            color: var(--color-dark-roast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: var(--transition-fast);
+        }
+
+        .modal-close-btn:hover {
+            background: var(--color-caramel);
+            color: var(--color-cream-light);
+        }
+
+        /* Product Detail Modal Specifics */
+        .product-modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .product-modal-img {
+            height: 100%;
+            min-height: 260px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .product-modal-body {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quantity-control {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            margin-right: 16px;
+        }
+
+        .qty-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .qty-val {
+            width: 40px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .product-modal-grid { grid-template-columns: 1fr; }
+            .product-modal-img { height: 200px; }
+        }
+
+        /* Order Form Styling */
+        .form-header {
+            padding: 32px 32px 16px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .form-header h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-dark-roast);
+        }
+
+        .form-body {
+            padding: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 500px) {
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-dark-roast);
+            margin-bottom: 6px;
+        }
+
+        .form-label .required {
+            color: var(--color-error);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--color-border);
+            background-color: var(--color-cream);
+            transition: var(--transition-fast);
+        }
+
+        .form-control:focus {
+            border-color: var(--color-caramel);
+            background-color: var(--color-cream-light);
+            outline: none;
+        }
+
+        .form-control.is-invalid {
+            border-color: var(--color-error);
+        }
+
+        .error-msg {
+            font-size: 0.775rem;
+            color: var(--color-error);
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-control.is-invalid + .error-msg {
+            display: block;
+        }
+
+        .form-success-banner {
+            display: none;
+            background-color: #E8F5E9;
+            color: var(--color-success);
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            text-align: center;
+            border: 1px solid #C8E6C9;
+        }
+
+        /* ==========================================================================
+           14. FOOTER
+           ========================================================================== */
+        .footer {
+            background-color: var(--color-dark-roast);
+            color: var(--color-cream-light);
+            padding: 80px 0 32px;
+            border-top: 1px solid var(--color-dark-roast-light);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 64px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-cream-light);
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .footer-desc {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            max-width: 320px;
+            margin-bottom: 24px;
+        }
+
+        .footer-heading {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-amber);
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--color-beige);
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-amber);
+            padding-left: 4px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-dark-roast-light);
+            color: var(--color-cream-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+        }
+
+        .social-btn:hover {
+            background: var(--color-caramel);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-text-light);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 576px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== -->
+    <header class="header" id="main-header">
+        <div class="container header-container">
+            <a href="#home" class="logo" aria-label="Golden Crust Bakery Home">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                Golden Crust
+            </a>
+
+            <nav class="nav-desktop" aria-label="Main Navigation">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">Our Bakery</a>
+                <a href="#menu" class="nav-link">Menu</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <div class="header-cta">
+                <button class="btn btn-primary" id="open-order-btn">Order Now</button>
+                <button class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <aside class="mobile-nav" id="mobile-nav" aria-hidden="true">
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="mobile-nav-link">Home</a></li>
+            <li><a href="#about" class="mobile-nav-link">Our Bakery</a></li>
+            <li><a href="#menu" class="mobile-nav-link">Menu</a></li>
+            <li><a href="#gallery" class="mobile-nav-link">Gallery</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+        <button class="btn btn-primary w-full" id="mobile-order-btn" style="width: 100%;">Order Now</button>
+    </aside>
+
+    <main id="main-content">
+        <!-- ==========================================================================
+           HERO SECTION
+           ========================================================================== -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-text-content">
+                        <span class="hero-tagline hero-fade-up">Handcrafted Daily in Zagreb</span>
+                        <h1 class="hero-title hero-fade-up hero-delay-1">Freshly baked.<br>Every single morning.</h1>
+                        <p class="hero-description hero-fade-up hero-delay-2">
+                            Artisan breads, buttery pastries and handcrafted cakes made fresh in our bakery every day with natural sourdough starter and love.
+                        </p>
+                        <div class="hero-actions hero-fade-up hero-delay-3">
+                            <a href="#menu" class="btn btn-primary">Explore Our Menu</a>
+                            <button class="btn btn-secondary" id="hero-order-cta">Order Now</button>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <div class="hero-image-frame">
+                            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=1000" 
+                                 alt="Freshly baked artisan croissants and golden breads on wooden board" 
+                                 width="600" height="750">
+                        </div>
+                        <div class="hero-badge">
+                            <div class="hero-badge-icon">🌾</div>
+                            <div>
+                                <div class="hero-badge-title">100% Organic Flour</div>
+                                <div class="hero-badge-sub">Sourced from local European mills</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           TRUST STATS BAR
+           ========================================================================== -->
+        <section class="stats-section" aria-label="Bakery Key Statistics">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="15">0</div>
+                        <div class="stat-label">Years of baking</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="100">0</div>
+                        <div class="stat-label">% Fresh Daily</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="30">0</div>
+                        <div class="stat-label">Artisan Products</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="7">0</div>
+                        <div class="stat-label">Days a week</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           FEATURED PRODUCTS (FRESH FROM THE OVEN)
+           ========================================================================== -->
+        <section class="section-padding" id="featured">
+            <div class="container">
+                <div class="section-header center text-center reveal">
+                    <span class="tagline">Daily Favorites</span>
+                    <h2 class="section-title">Fresh From The Oven</h2>
+                    <p class="section-subtitle">Our most-loved bakery classics, crafted with care using time-honored recipes.</p>
+                </div>
+
+                <div class="products-grid" id="featured-products-container">
+                    <!-- Dynamic rendering via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           INTERACTIVE MENU SECTION
+           ========================================================================== -->
+        <section class="section-padding" id="menu" style="background-color: var(--color-beige);">
+            <div class="container">
+                <div class="section-header center text-center reveal">
+                    <span class="tagline">Full Selection</span>
+                    <h2 class="section-title">Our Menu</h2>
+                    <p class="section-subtitle">Explore our full line of sourdough breads, buttery pastries, desserts and breakfast items.</p>
+                </div>
+
+                <div class="menu-filters reveal">
+                    <button class="filter-btn active" data-category="all">All Items</button>
+                    <button class="filter-btn" data-category="bread">Bread</button>
+                    <button class="filter-btn" data-category="pastries">Pastries</button>
+                    <button class="filter-btn" data-category="cakes">Cakes</button>
+                    <button class="filter-btn" data-category="breakfast">Breakfast</button>
+                </div>
+
+                <div class="menu-grid" id="full-menu-container">
+                    <!-- Dynamic rendering via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           TODAY'S SPECIAL FEATURE
+           ========================================================================== -->
+        <section class="container reveal">
+            <div class="special-section">
+                <div class="special-grid">
+                    <div class="special-image">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&q=80&w=800" 
+                             alt="Fresh Strawberry Tart with ripe berries and gold mint leaf garnish" 
+                             loading="lazy">
+                    </div>
+                    <div class="special-content">
+                        <span class="special-badge">Chef's Daily Highlight</span>
+                        <h2 class="special-title">Fresh Strawberry Tart</h2>
+                        <p class="special-desc">Made this morning with fresh local strawberries, homemade vanilla bean pastry cream, and our signature buttery crust.</p>
+                        <div class="special-price-row">
+                            <span class="special-price">€4.90</span>
+                            <button class="btn btn-primary" id="order-special-btn">Order Today's Special</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           ABOUT SECTION
+           ========================================================================== -->
+        <section class="section-padding" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-image-stack reveal">
+                        <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=900" 
+                             alt="Baker coating flour on dough before baking in stone oven" 
+                             class="about-main-img" 
+                             loading="lazy">
+                    </div>
+                    <div class="about-text-content reveal reveal-delay-1">
+                        <span class="tagline">Our Heritage</span>
+                        <h2 class="section-title">Baked With Tradition. Made For Today.</h2>
+                        <p style="color: var(--color-text-muted); margin-bottom: 20px;">
+                            Golden Crust Bakery began with a simple idea: good bread should take time. We combine traditional European baking methods with carefully selected ingredients to create bread and pastries that bring people together.
+                        </p>
+                        <p style="color: var(--color-text-muted); margin-bottom: 32px;">
+                            Every loaf is fermented naturally for up to 36 hours to yield optimum depth of flavor, crisp crust, and light digestive texture.
+                        </p>
+
+                        <div class="values-grid">
+                            <div class="value-card">
+                                <div class="value-icon">🥖</div>
+                                <h3 class="value-title">Traditional Craft</h3>
+                                <p class="value-text">Time-tested recipes and slow natural fermentation.</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">☀️</div>
+                                <h3 class="value-title">Fresh Every Day</h3>
+                                <p class="value-text">Baked fresh early every single morning.</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">🌱</div>
+                                <h3 class="value-title">Quality Ingredients</h3>
+                                <p class="value-text">Pure European butter and organic local flour.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           GALLERY SECTION & LIGHTBOX
+           ========================================================================== -->
+        <section class="section-padding" id="gallery" style="background-color: var(--color-beige);">
+            <div class="container">
+                <div class="section-header center text-center reveal">
+                    <span class="tagline">Visual Journey</span>
+                    <h2 class="section-title">Inside Golden Crust</h2>
+                    <p class="section-subtitle">Take a glance at our kitchen, our artisan breads, and warm bakery atmosphere.</p>
+                </div>
+
+                <div class="menu-filters reveal">
+                    <button class="filter-btn active" data-gallery-filter="all">All Photos</button>
+                    <button class="filter-btn" data-gallery-filter="pastries">Pastries</button>
+                    <button class="filter-btn" data-gallery-filter="bread">Bread</button>
+                    <button class="filter-btn" data-gallery-filter="bakery">Bakery</button>
+                </div>
+
+                <div class="gallery-grid reveal" id="gallery-container">
+                    <!-- Rendered dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           TESTIMONIALS CAROUSEL
+           ========================================================================== -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header center text-center reveal">
+                    <span class="tagline">Customer Love</span>
+                    <h2 class="section-title">Loved By Our Neighbors</h2>
+                </div>
+
+                <div class="testimonials-slider reveal" id="testimonial-slider">
+                    <div class="testimonial-track" id="testimonial-track">
+                        <div class="testimonial-slide">
+                            <div class="quote-icon">“</div>
+                            <p class="testimonial-text">Best croissants in town. I stop here every Saturday morning for fresh pain au chocolat and coffee. Irresistible layer flakiness!</p>
+                            <div class="testimonial-author">— Ana M., Zagreb</div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="quote-icon">“</div>
+                            <p class="testimonial-text">The sourdough is fantastic and the staff is always welcoming. Crisp crust with an airy crumb that keeps fresh for days!</p>
+                            <div class="testimonial-author">— Marko P., Zagreb</div>
+                        </div>
+                        <div class="testimonial-slide">
+                            <div class="quote-icon">“</div>
+                            <p class="testimonial-text">Beautiful cakes and everything tastes homemade with real butter. Ordered my birthday cake here and everyone was thrilled.</p>
+                            <div class="testimonial-author">— Ivana K., Zagreb</div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-controls">
+                        <button class="btn-icon" id="carousel-prev-btn" aria-label="Previous Testimonial">←</button>
+                        <div class="carousel-dots" id="carousel-dots">
+                            <span class="dot active" data-index="0"></span>
+                            <span class="dot" data-index="1"></span>
+                            <span class="dot" data-index="2"></span>
+                        </div>
+                        <button class="btn-icon" id="carousel-next-btn" aria-label="Next Testimonial">→</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           CONTACT & LOCATION SECTION
+           ========================================================================== -->
+        <section class="section-padding" id="contact" style="background-color: var(--color-beige);">
+            <div class="container">
+                <div class="section-header center text-center reveal">
+                    <span class="tagline">Visit Us</span>
+                    <h2 class="section-title">Where To Find Us</h2>
+                    <p class="section-subtitle">We would love to welcome you in person for hot coffee and fresh pastry.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-card-box reveal">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-details">
+                                <h4>Our Address</h4>
+                                <p>123 Main Street, Zagreb, Croatia</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-details">
+                                <h4>Phone & Email</h4>
+                                <p>+385 1 555 1234</p>
+                                <p>hello@goldencrustbakery.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <div class="contact-details">
+                                <h4>Opening Hours</h4>
+                                <p>Monday – Friday: 07:00 – 19:00</p>
+                                <p>Saturday: 07:00 – 14:00</p>
+                                <p>Sunday: Closed</p>
+                            </div>
+                        </div>
+
+                        <a href="https://maps.google.com/?q=123+Main+Street+Zagreb+Croatia" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+                            Get Directions
+                        </a>
+                    </div>
+
+                    <div class="map-placeholder reveal reveal-delay-1">
+                        <iframe title="Bakery Location Map" src="https://maps.google.com/maps?q=Zagreb%20Main%20Street&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#home" class="footer-logo">Golden Crust</a>
+                    <p class="footer-desc">Fresh from the oven. Made with love. Bringing classic European baking heritage to Zagreb every day.</p>
+                    <div class="social-icons">
+                        <a href="https://instagram.com" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">IG</a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">FB</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">Our Bakery</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="#menu">Artisan Breads</a></li>
+                        <li><a href="#menu">French Pastries</a></li>
+                        <li><a href="#menu">Custom Cakes</a></li>
+                        <li><a href="#menu">Breakfast Sets</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Contact Info</h4>
+                    <ul class="footer-links" style="color: var(--color-text-light);">
+                        <li>123 Main Street, Zagreb</li>
+                        <li>+385 1 555 1234</li>
+                        <li>hello@goldencrustbakery.com</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Golden Crust Bakery. All rights reserved.</p>
+                <p>Designed with care for local artisan baking.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       PRODUCT DETAIL MODAL
+       ========================================================================== -->
+    <div class="modal-backdrop" id="product-modal" aria-hidden="true">
+        <div class="modal-box" style="max-width: 700px;">
+            <button class="modal-close-btn" id="close-product-modal" aria-label="Close details">✕</button>
+            <div class="product-modal-grid">
+                <img id="pm-img" src="" alt="" class="product-modal-img">
+                <div class="product-modal-body">
+                    <span id="pm-category" class="tagline" style="font-size: 0.75rem;">Category</span>
+                    <h3 id="pm-title" style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 8px;">Product Name</h3>
+                    <div id="pm-price" style="font-size: 1.4rem; font-weight: 700; color: var(--color-caramel); margin-bottom: 16px;">€0.00</div>
+                    <p id="pm-desc" style="font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 24px;">Description text goes here.</p>
+                    
+                    <div style="margin-top: auto; display: flex; align-items: center;">
+                        <div class="quantity-control">
+                            <button class="qty-btn" id="pm-qty-minus">-</button>
+                            <span class="qty-val" id="pm-qty-val">1</span>
+                            <button class="qty-btn" id="pm-qty-plus">+</button>
+                        </div>
+                        <button class="btn btn-primary" id="pm-order-btn" style="flex-grow: 1;">Order This Item</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       ORDER REQUEST MODAL
+       ========================================================================== -->
+    <div class="modal-backdrop" id="order-modal" aria-hidden="true">
+        <div class="modal-box">
+            <button class="modal-close-btn" id="close-order-modal" aria-label="Close order form">✕</button>
+            <div class="form-header">
+                <h3>Bakery Pickup Order</h3>
+                <p style="font-size: 0.9rem; color: var(--color-text-muted);">Place your request and we will have it fresh & ready for you.</p>
+            </div>
+            <div class="form-body">
+                <div class="form-success-banner" id="order-success-msg">
+                    Thank you! Your order request has been received. We'll contact you shortly to confirm your order.
+                </div>
+
+                <form id="bakery-order-form" novalidate>
+                    <div class="form-group">
+                        <label for="order-name" class="form-label">Full Name <span class="required">*</span></label>
+                        <input type="text" id="order-name" class="form-control" placeholder="e.g. Ana Horvat" required>
+                        <span class="error-msg">Please enter your full name.</span>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="order-phone" class="form-label">Phone Number <span class="required">*</span></label>
+                            <input type="tel" id="order-phone" class="form-control" placeholder="+385 91 123 4567" required>
+                            <span class="error-msg">Valid phone number required.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="order-email" class="form-label">Email Address</label>
+                            <input type="email" id="order-email" class="form-control" placeholder="ana@example.com">
+                            <span class="error-msg">Enter a valid email address.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="order-product" class="form-label">Selected Item <span class="required">*</span></label>
+                            <select id="order-product" class="form-control" required>
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="order-qty" class="form-label">Quantity <span class="required">*</span></label>
+                            <input type="number" id="order-qty" class="form-control" min="1" max="50" value="1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="order-date" class="form-label">Pickup Date <span class="required">*</span></label>
+                            <input type="date" id="order-date" class="form-control" required>
+                            <span class="error-msg">Please select a future pickup date.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="order-time" class="form-label">Pickup Time <span class="required">*</span></label>
+                            <select id="order-time" class="form-control" required>
+                                <option value="">Select Time</option>
+                                <option value="07:30">07:30 AM</option>
+                                <option value="09:00">09:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="13:00">01:00 PM</option>
+                                <option value="15:00">03:00 PM</option>
+                                <option value="17:00">05:00 PM</option>
+                            </select>
+                            <span class="error-msg">Please select a time.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="order-note" class="form-label">Special Request / Note</label>
+                        <textarea id="order-note" class="form-control" rows="3" placeholder="Slicing preference, allergies, or special wishes..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submit-order-btn" style="width: 100%; justify-content: center;">
+                        Submit Order Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       GALLERY LIGHTBOX MODAL
+       ========================================================================== -->
+    <div class="lightbox-modal" id="lightbox-modal" aria-hidden="true">
+        <button class="lightbox-btn lightbox-close" id="lightbox-close-btn" aria-label="Close Lightbox">✕</button>
+        <button class="lightbox-btn lightbox-prev" id="lightbox-prev-btn" aria-label="Previous Image">‹</button>
+        <button class="lightbox-btn lightbox-next" id="lightbox-next-btn" aria-label="Next Image">›</button>
+
+        <div class="lightbox-content">
+            <div class="lightbox-counter" id="lightbox-counter">1 / 6</div>
+            <img id="lightbox-img" class="lightbox-image" src="" alt="">
+            <div id="lightbox-caption" class="lightbox-caption">Caption text</div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       JAVASCRIPT APPLICATION LOGIC
+       ========================================================================== -->
+    <script>
+        /**
+         * GOLDEN CRUST BAKERY - CORE JS MODULE
+         */
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* ------------------------------------------------------------------
+               1. DATA STRUCTURES (PRODUCTS & GALLERY)
+               ------------------------------------------------------------------ */
+            const products = [
+                {
+                    id: 1,
+                    name: "Butter Croissant",
+                    category: "pastries",
+                    description: "Light, flaky and beautifully golden with layers of pure French butter.",
+                    price: 2.20,
+                    popular: true,
+                    image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    id: 2,
+                    name: "Pain au Chocolat",
+                    category: "pastries",
+                    description: "Classic French pastry filled with rich 64% Belgian dark chocolate batons.",
+                    price: 2.60,
+                    popular: true,
+                    image: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    id: 3,
+                    name: "Cinnamon Roll",
+                    category: "pastries",
+                    description: "Soft brioche spiraled generously with Ceylon cinnamon and brown sugar glaze.",
+                    price: 3.20,
+                    popular: true,
+                    image: "https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    id: 4,
+                    name: "Sourdough Bread",
+                    category: "bread",
+                    description: "Naturally fermented 36-hour artisan sourdough with crisp crust & open crumb.",
+                    price: 4.50,
+                    popular: true,
+                    image: "https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    id: 5,
+                    name: "Apple Strudel",
+                    category: "pastries",
+                    description: "Traditional paper-thin pastry filled with sweet spiced apples, cinnamon & raisins.",
+                    price: 3.80,
+                    popular: true,
+                    image: "https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    id: 6,
+                    name: "Chocolate Cake",
+                    category: "cakes",
+                    description: "Decadent dark chocolate sponge layered with smooth chocolate ganache.",
+                    price: 4.50,
+                    popular: true,
+                    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    id: 7,
+                    name: "Multigrain Bread",
+                    category: "bread",
+                    description: "Nutritious bread packed with sunflower seeds, flaxseeds, oats and pumpkin seeds.",
+                    price: 4.20,
+                    popular: false,
+                    image: "https://images.unsplash.com/photo-1549931319-a545dcf3bc73?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    id: 8,
+                    name: "Classic Baguette",
+                    category: "bread",
+                    description: "Traditional French baguette with golden crust and soft aromatic inside.",
+                    price: 2.00,
+                    popular: false,
+                    image: "https://images.unsplash.com/photo-1597079910443-60c43fc4f729?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    id: 9,
+                    name: "Cheesecake",
+                    category: "cakes",
+                    description: "Creamy baked New York style cheesecake on a crunchy graham crust.",
+                    price: 4.80,
+                    popular: false,
+                    image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    id: 10,
+                    name: "Lemon Tart",
+                    category: "cakes",
+                    description: "Zesty lemon curd filled tart topped with delicate caramelized Italian meringue.",
+                    price: 4.20,
+                    popular: false,
+                    image: "https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    id: 11,
+                    name: "Ham & Cheese Croissant",
+                    category: "breakfast",
+                    description: "Warm flaky croissant filled with premium smoked ham and melted Gruyere cheese.",
+                    price: 4.90,
+                    popular: false,
+                    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&q=80&w=600"
+                },
+                {
+                    id: 12,
+                    name: "Granola & Yogurt",
+                    category: "breakfast",
+                    description: "House-made honey toasted granola served with organic Greek yogurt & fresh berries.",
+                    price: 4.50,
+                    popular: false,
+                    image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=80&w=600"
+                }
+            ];
+
+            const galleryItems = [
+                { id: 1, category: "pastries", title: "Golden Butter Croissants", image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&q=80&w=800" },
+                { id: 2, category: "bread", title: "Fresh Sourdough Crust", image: "https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?auto=format&fit=crop&q=80&w=800" },
+                { id: 3, category: "pastries", title: "Cinnamon Sugar Swirls", image: "https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&q=80&w=800" },
+                { id: 4, category: "cakes", title: "Handcrafted Layer Cakes", image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800" },
+                { id: 5, category: "bakery", title: "Cozy Bakery Atmosphere", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" },
+                { id: 6, category: "bakery", title: "Artisan Dough Shaping", image: "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&q=80&w=800" }
+            ];
+
+            /* ------------------------------------------------------------------
+               2. HEADER & MOBILE NAVIGATION
+               ------------------------------------------------------------------ */
+            const header = document.getElementById('main-header');
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileNavBackdrop = document.getElementById('mobile-nav-backdrop');
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 40) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            function toggleMobileNav(open) {
+                const isOpen = open !== undefined ? open : !mobileNav.classList.contains('is-open');
+                mobileNav.classList.toggle('is-open', isOpen);
+                mobileNavBackdrop.classList.toggle('is-open', isOpen);
+                hamburgerBtn.classList.toggle('is-active', isOpen);
+                hamburgerBtn.setAttribute('aria-expanded', isOpen);
+                mobileNav.setAttribute('aria-hidden', !isOpen);
+                document.body.classList.toggle('modal-open', isOpen);
+            }
+
+            hamburgerBtn.addEventListener('click', () => toggleMobileNav());
+            mobileNavBackdrop.addEventListener('click', () => toggleMobileNav(false));
+            mobileLinks.forEach(link => link.addEventListener('click', () => toggleMobileNav(false)));
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileNav.classList.contains('is-open')) {
+                    toggleMobileNav(false);
+                }
+            });
+
+            /* ------------------------------------------------------------------
+               3. RENDERING FEATURED PRODUCTS & FULL MENU
+               ------------------------------------------------------------------ */
+            const featuredContainer = document.getElementById('featured-products-container');
+            const menuContainer = document.getElementById('full-menu-container');
+
+            function createProductCardMarkup(item) {
+                return `
+                    <article class="product-card">
+                        ${item.popular ? '<span class="product-badge">Popular</span>' : ''}
+                        <div class="product-image-container">
+                            <img src="${item.image}" alt="${item.name}" loading="lazy" onerror="this.src='https://placehold.co/600x400/EFEBE4/2B1E1A?text=${encodeURIComponent(item.name)}'">
+                        </div>
+                        <div class="product-content">
+                            <div class="product-header-row">
+                                <h3 class="product-title">${item.name}</h3>
+                                <span class="product-price">€${item.price.toFixed(2)}</span>
+                            </div>
+                            <p class="product-description">${item.description}</p>
+                            <button class="product-action-btn view-details-btn" data-id="${item.id}">View Details</button>
+                        </div>
+                    </article>
+                `;
+            }
+
+            function renderProducts() {
+                // Featured (top 6 popular)
+                const popularItems = products.filter(p => p.popular).slice(0, 6);
+                featuredContainer.innerHTML = popularItems.map(createProductCardMarkup).join('');
+
+                // Full Menu Initial Render
+                renderMenuCategory('all');
+            }
+
+            function renderMenuCategory(category) {
+                menuContainer.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    const filtered = category === 'all' 
+                        ? products 
+                        : products.filter(p => p.category === category);
+
+                    menuContainer.innerHTML = filtered.map(createProductCardMarkup).join('');
+                    menuContainer.classList.remove('fade-out');
+                }, 200);
+            }
+
+            // Menu Filter Click Events
+            document.querySelectorAll('.menu-filters [data-category]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.menu-filters [data-category]').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    renderMenuCategory(e.target.dataset.category);
+                });
+            });
+
+            renderProducts();
+
+            /* ------------------------------------------------------------------
+               4. PRODUCT DETAIL MODAL & QUANTITY CONTROL
+               ------------------------------------------------------------------ */
+            const productModal = document.getElementById('product-modal');
+            const closeProductModalBtn = document.getElementById('close-product-modal');
+            let currentSelectedProduct = null;
+            let currentQuantity = 1;
+
+            const pmImg = document.getElementById('pm-img');
+            const pmCategory = document.getElementById('pm-category');
+            const pmTitle = document.getElementById('pm-title');
+            const pmPrice = document.getElementById('pm-price');
+            const pmDesc = document.getElementById('pm-desc');
+            const pmQtyVal = document.getElementById('pm-qty-val');
+
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('view-details-btn')) {
+                    const id = parseInt(e.target.dataset.id, 10);
+                    openProductModal(id);
+                }
+            });
+
+            function openProductModal(productId) {
+                const product = products.find(p => p.id === productId);
+                if (!product) return;
+
+                currentSelectedProduct = product;
+                currentQuantity = 1;
+                pmQtyVal.textContent = currentQuantity;
+
+                pmImg.src = product.image;
+                pmImg.alt = product.name;
+                pmCategory.textContent = product.category.toUpperCase();
+                pmTitle.textContent = product.name;
+                pmPrice.textContent = `€${product.price.toFixed(2)}`;
+                pmDesc.textContent = product.description;
+
+                productModal.classList.add('is-open');
+                productModal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+            }
+
+            function closeProductModal() {
+                productModal.classList.remove('is-open');
+                productModal.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+            }
+
+            closeProductModalBtn.addEventListener('click', closeProductModal);
+            productModal.addEventListener('click', (e) => {
+                if (e.target === productModal) closeProductModal();
+            });
+
+            document.getElementById('pm-qty-minus').addEventListener('click', () => {
+                if (currentQuantity > 1) {
+                    currentQuantity--;
+                    pmQtyVal.textContent = currentQuantity;
+                }
+            });
+
+            document.getElementById('pm-qty-plus').addEventListener('click', () => {
+                currentQuantity++;
+                pmQtyVal.textContent = currentQuantity;
+            });
+
+            document.getElementById('pm-order-btn').addEventListener('click', () => {
+                closeProductModal();
+                openOrderModal(currentSelectedProduct ? currentSelectedProduct.id : null, currentQuantity);
+            });
+
+            /* ------------------------------------------------------------------
+               5. ORDER REQUEST MODAL & VALIDATION
+               ------------------------------------------------------------------ */
+            const orderModal = document.getElementById('order-modal');
+            const closeOrderModalBtn = document.getElementById('close-order-modal');
+            const orderSelect = document.getElementById('order-product');
+            const orderForm = document.getElementById('bakery-order-form');
+            const orderDateInput = document.getElementById('order-date');
+            const successBanner = document.getElementById('order-success-msg');
+
+            // Set Min Pickup Date to Today
+            const today = new Date().toISOString().split('T')[0];
+            orderDateInput.setAttribute('min', today);
+
+            // Populate Product Dropdown
+            function populateOrderDropdown() {
+                orderSelect.innerHTML = products.map(p => `
+                    <option value="${p.name}">€${p.price.toFixed(2)} — ${p.name}</option>
+                `).join('');
+                orderSelect.insertAdjacentHTML('afterbegin', `<option value="Fresh Strawberry Tart">€4.90 — Fresh Strawberry Tart (Today's Special)</option>`);
+            }
+            populateOrderDropdown();
+
+            function openOrderModal(selectedProductId = null, qty = 1) {
+                if (selectedProductId) {
+                    const found = products.find(p => p.id === selectedProductId);
+                    if (found) orderSelect.value = found.name;
+                }
+                document.getElementById('order-qty').value = qty;
+                successBanner.style.display = 'none';
+
+                orderModal.classList.add('is-open');
+                orderModal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+            }
+
+            function closeOrderModal() {
+                orderModal.classList.remove('is-open');
+                orderModal.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+            }
+
+            document.getElementById('open-order-btn').addEventListener('click', () => openOrderModal());
+            document.getElementById('hero-order-cta').addEventListener('click', () => openOrderModal());
+            document.getElementById('mobile-order-btn').addEventListener('click', () => {
+                toggleMobileNav(false);
+                openOrderModal();
+            });
+            document.getElementById('order-special-btn').addEventListener('click', () => {
+                openOrderModal();
+                orderSelect.value = "Fresh Strawberry Tart";
+            });
+
+            closeOrderModalBtn.addEventListener('click', closeOrderModal);
+            orderModal.addEventListener('click', (e) => {
+                if (e.target === orderModal) closeOrderModal();
+            });
+
+            // Form Submit Logic
+            orderForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                let isValid = true;
+
+                const nameField = document.getElementById('order-name');
+                const phoneField = document.getElementById('order-phone');
+                const dateField = document.getElementById('order-date');
+                const timeField = document.getElementById('order-time');
+
+                [nameField, phoneField, dateField, timeField].forEach(field => {
+                    if (!field.value.trim()) {
+                        field.classList.add('is-invalid');
+                        isValid = false;
+                    } else {
+                        field.classList.remove('is-invalid');
+                    }
+                });
+
+                if (!isValid) return;
+
+                const submitBtn = document.getElementById('submit-order-btn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Processing Request...";
+
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Submit Order Request";
+                    successBanner.style.display = 'block';
+                    orderForm.reset();
+                    orderDateInput.setAttribute('min', today);
+
+                    setTimeout(() => {
+                        closeOrderModal();
+                    }, 2800);
+                }, 1000);
+            });
+
+            /* ------------------------------------------------------------------
+               6. GALLERY & LIGHTBOX
+               ------------------------------------------------------------------ */
+            const galleryContainer = document.getElementById('gallery-container');
+            const lightboxModal = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const lightboxCounter = document.getElementById('lightbox-counter');
+            let currentGalleryList = [...galleryItems];
+            let lightboxIndex = 0;
+
+            function renderGallery(filter = 'all') {
+                currentGalleryList = filter === 'all' 
+                    ? galleryItems 
+                    : galleryItems.filter(item => item.category === filter);
+
+                galleryContainer.innerHTML = currentGalleryList.map((item, idx) => `
+                    <div class="gallery-item" data-index="${idx}">
+                        <img src="${item.image}" alt="${item.title}" loading="lazy">
+                        <div class="gallery-overlay">🔍 ${item.title}</div>
+                    </div>
+                `).join('');
+            }
+
+            document.querySelectorAll('[data-gallery-filter]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('[data-gallery-filter]').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    renderGallery(e.target.dataset.galleryFilter);
+                });
+            });
+
+            galleryContainer.addEventListener('click', (e) => {
+                const item = e.target.closest('.gallery-item');
+                if (item) {
+                    lightboxIndex = parseInt(item.dataset.index, 10);
+                    openLightbox();
+                }
+            });
+
+            function openLightbox() {
+                updateLightboxContent();
+                lightboxModal.classList.add('is-open');
+                lightboxModal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+            }
+
+            function updateLightboxContent() {
+                const item = currentGalleryList[lightboxIndex];
+                if (!item) return;
+                lightboxImg.src = item.image;
+                lightboxCaption.textContent = item.title;
+                lightboxCounter.textContent = `${lightboxIndex + 1} / ${currentGalleryList.length}`;
+            }
+
+            function closeLightbox() {
+                lightboxModal.classList.remove('is-open');
+                lightboxModal.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+            }
+
+            document.getElementById('lightbox-close-btn').addEventListener('click', closeLightbox);
+            document.getElementById('lightbox-prev-btn').addEventListener('click', () => {
+                lightboxIndex = (lightboxIndex - 1 + currentGalleryList.length) % currentGalleryList.length;
+                updateLightboxContent();
+            });
+            document.getElementById('lightbox-next-btn').addEventListener('click', () => {
+                lightboxIndex = (lightboxIndex + 1) % currentGalleryList.length;
+                updateLightboxContent();
+            });
+
+            renderGallery();
+
+            /* Global Keyboard Escape handler for Modals */
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeProductModal();
+                    closeOrderModal();
+                    closeLightbox();
+                }
+                if (lightboxModal.classList.contains('is-open')) {
+                    if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev-btn').click();
+                    if (e.key === 'ArrowRight') document.getElementById('lightbox-next-btn').click();
+                }
+            });
+
+            /* ------------------------------------------------------------------
+               7. TESTIMONIALS CAROUSEL
+               ------------------------------------------------------------------ */
+            const track = document.getElementById('testimonial-track');
+            const dots = document.querySelectorAll('#carousel-dots .dot');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function goToSlide(index) {
+                currentSlide = index;
+                track.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach((dot, idx) => dot.classList.toggle('active', idx === index));
+            }
+
+            document.getElementById('carousel-prev-btn').addEventListener('click', () => {
+                const newIndex = (currentSlide - 1 + dots.length) % dots.length;
+                goToSlide(newIndex);
+                resetAutoplay();
+            });
+
+            document.getElementById('carousel-next-btn').addEventListener('click', () => {
+                const newIndex = (currentSlide + 1) % dots.length;
+                goToSlide(newIndex);
+                resetAutoplay();
+            });
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    goToSlide(parseInt(e.target.dataset.index, 10));
+                    resetAutoplay();
+                });
+            });
+
+            function startAutoplay() {
+                slideInterval = setInterval(() => {
+                    const newIndex = (currentSlide + 1) % dots.length;
+                    goToSlide(newIndex);
+                }, 5000);
+            }
+
+            function resetAutoplay() {
+                clearInterval(slideInterval);
+                startAutoplay();
+            }
+
+            startAutoplay();
+
+            /* ------------------------------------------------------------------
+               8. SCROLL REVEAL & STATS COUNTER ANIMATION
+               ------------------------------------------------------------------ */
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // Animated Number Counting
+            const statNumbers = document.querySelectorAll('.stat-number');
+            let counted = false;
+
+            const statsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !counted) {
+                        statNumbers.forEach(num => {
+                            const target = parseInt(num.dataset.target, 10);
+                            let current = 0;
+                            const step = Math.ceil(target / 40);
+                            const timer = setInterval(() => {
+                                current += step;
+                                if (current >= target) {
+                                    num.textContent = target + (target === 15 || target === 30 ? '+' : target === 100 ? '%' : '');
+                                    clearInterval(timer);
+                                } else {
+                                    num.textContent = current;
+                                }
+                            }, 30);
+                        });
+                        counted = true;
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            if (statNumbers.length > 0) {
+                statsObserver.observe(document.querySelector('.stats-section'));
+            }
+        });
+    </script>
+</body>
+</html>
